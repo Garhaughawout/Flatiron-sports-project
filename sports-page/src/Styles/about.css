@@ -1,0 +1,30 @@
+.about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    margin: 1vw 9vw;
+}
+
+.about-header {
+    font-size: 1.5vw;
+    font-weight: 600;
+
+}
+
+.about-information {
+    font-size: 1vw;
+}
+
+.aboutpage-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    margin: 20px 0;
+}
+
+.aboutpage-list {
+    margin: 0;
+    padding: .5vw;
+}

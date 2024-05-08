@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './Styles/index.css';
-import App from './App';
+import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Link, Route} from 'react-router-dom';
-import Header from './Header';
-import About from './About';
-
-
+import Header from './components/Header';
+import About from './components/About';
+import Groups from './components/Groups';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
         path: '/about',
         element: <><Header/><About/></>,
     },
+    {
+        path: '/groups',
+        element: <><Header/><Groups/></>,
+    }
 ]); 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

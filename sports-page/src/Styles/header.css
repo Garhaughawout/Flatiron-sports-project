@@ -4,15 +4,15 @@
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    font-size: calc(6px + 1vmin);
+    font-size: calc(7px + 1vmin);
     color: white;
     padding: 15px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: 'inter', sans-serif;
 }
 
 .header-name {
     margin-left: 1vw;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .header-left {
