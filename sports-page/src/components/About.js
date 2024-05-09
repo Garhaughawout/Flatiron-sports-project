@@ -16,7 +16,7 @@ export default function About() {
             </div>
             <div className='about-information'>
                 <h3>Welcome to Get up</h3>
-                <p>Get Up is a sports app that connects you with other players in your area. You can create groups, join groups, and schedule games with other players. Get Up is the perfect app for anyone who loves to play sports but doesn't have a team to play with. Sign up today and start playing!</p>
+                <p>Get Up is a sports site that connects you with other players in your area. You can create groups, join groups, and schedule games with other players. Get Up is the perfect app for anyone who loves to play sports but doesn't have a team to play with. Sign up today and start playing!</p>
                 <br></br>
                 <h3>Our Mission</h3>
                 <p>Our mission is simple: to provide a platform where people can easily find others who share their enthusiasm for sports and form communities centered around their favorite activities. We understand that finding like-minded individuals to play sports with can sometimes be challenging, which is why we've created a space where you can connect with others who are just as eager to hit the field, court, or rink as you are.</p>
@@ -24,7 +24,7 @@ export default function About() {
                 <h3>Why Choose Us?</h3>
                 <ul>
                     <li className='aboutpage-list'><span style={boldstyle}>Community Focus:</span> We're more than just a platform for organizing sports activities. We're a community of individuals who share a common love for sports and the camaraderie it brings.</li>
-                    <li className='aboutpage-list'><span style={boldstyle}>Diverse Sports Offering:</span> Diverse Sports Offerings: Whether you're into basketball, soccer, tennis, or something entirely different, you'll find a place for your favorite sport here. Our platform caters to a wide range of interests and skill levels.</li>
+                    <li className='aboutpage-list'><span style={boldstyle}>Diverse Sports Offering:</span> Diverse Sports Offerings: Whether you're into basketball, soccer, pickleball, or something entirely different, you'll find a place for your favorite sport here. Our platform caters to a wide range of interests and skill levels.</li>
                     <li className='aboutpage-list'><span style={boldstyle}>Easy to Use:</span> Our user-friendly interface makes it simple to create or join sports events, connect with other players, and manage your activities—all in one convenient location.</li>
                     <li className='aboutpage-list'><span style={boldstyle}>Safety and Security:</span> Your safety is our top priority. We take measures to ensure that our platform is a safe and welcoming environment for all members of our community.</li>
                 </ul>

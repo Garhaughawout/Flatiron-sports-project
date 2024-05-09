@@ -1,0 +1,28 @@
+.groups-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1vw;
+    margin: 1vw 9vw;
+}
+
+.group-form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 2vw 9vw;
+}
+
+.group-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.group-form-submit {
+    border: none;
+    background-color: #2e3944;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}

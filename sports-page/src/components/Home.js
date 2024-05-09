@@ -23,11 +23,11 @@ export default function Home() {
             </div>
             <div className="home-content">
                 <h1>Are you ready to GET UP and play!</h1>
-                <p>Get Up is a sports app that connects you with other players in your area. You can create groups, join groups, and schedule games with other players. Get Up is the perfect app for anyone who loves to play sports but doesn't have a team to play with. Sign up today and start playing!</p>
+                <p>Get Up is a sports site that connects you with other players in your area. You can create groups, join groups, and schedule games with other players. Get Up is the perfect app for anyone who loves to play sports but doesn't have a team to play with. Sign up today and start playing!</p>
             </div>
             <div className="homepage-buttons">
-                <button className="homepage-button"><Link to="/about" className="homepage-link">Learn More</Link></button>
-                <button className="homepage-button"><Link to="/groups" className="homepage-link">Find Groups</Link></button>
+                <Link to="/about" className="homepage-link"><button className="homepage-button">Learn More</button></Link>
+                <Link to="/groups" className="homepage-link"><button className="homepage-button">Find Groups</button></Link>
             </div>
         </div>
     );
