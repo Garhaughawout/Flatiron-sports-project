@@ -97,29 +97,29 @@ export default function Groups() {
                 <form className="group-form">
                     <label className="group-form-input">
                         Sport:
-                        <input type="text" name="sport" value={formInformation.sport} onChange={editFormInformation}/>
+                        <input type="text" name="sport" value={formInformation.sport} onChange={editFormInformation} className="input-button" placeholder="Enter the desired sport..."/>
                     </label>
                     <label>
                         Location:
-                        <input type="text" name="location" value={formInformation.location} onChange={editFormInformation}/>
+                        <input type="text" name="location" value={formInformation.location} onChange={editFormInformation} className="input-button" placeholder="Enter the location..."/>
                     </label>
                     <label>
                         Time:
-                        <input type="text" name="time" value={formInformation.time} onChange={editFormInformation}/>
+                        <input type="text" name="time" value={formInformation.time} onChange={editFormInformation} className="input-button" placeholder="Enter the time playing..."/>
                     </label>
                     <label>
                         Date:
-                        <input type="text" name="date" value={formInformation.date} onChange={editFormInformation}/>
+                        <input type="text" name="date" value={formInformation.date} onChange={editFormInformation} className="input-button" placeholder="Enter the date playing..."/>
                     </label>
                     <label>
                         Skill Level:
-                        <input type="text" name="skill" value={formInformation.skill} onChange={editFormInformation}/>
+                        <input  type="text" name="skill" value={formInformation.skill} onChange={editFormInformation} className="input-button" placeholder="Enter the skill level..."/>
                     </label>
                     <label>
                         People Needed:
-                        <input type="text" name="people" value={formInformation.people} onChange={editFormInformation}/>
+                        <input type="text" name="people" value={formInformation.people} onChange={editFormInformation} className="input-button" placeholder="Enter the people needed..."/>
                     </label>
-                    <input className="group-form-submit" type="submit" value="Create Group" onClick={handleSubmit} />
+                    <input className="group-form-submit" type="submit" value="Create Group" onClick={handleSubmit}/>
                 </form>
             </div>
         </div>
