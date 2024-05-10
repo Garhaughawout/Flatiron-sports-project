@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider, Link, Route} from 'react-router-do
 import Header from './components/Header';
 import About from './components/About';
 import Groups from './components/Groups';
+import Footer from './components/footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
@@ -16,11 +17,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/about',
-        element: <><Header/><About/></>,
+        element: <><Header/><About/><Footer/></>,
     },
     {
         path: '/groups',
-        element: <><Header/><Groups/></>,
+        element: <><Header/><Groups/><Footer/></>,
     }
 ]); 
 
