@@ -22,7 +22,7 @@ export default function Groups() {
 
 
     useEffect(() => {
-        fetch("http://localhost:6001/listings")
+        fetch("https://sports-data.onrender.com/listings")
             .then((res) => res.json())
             .then((data) => {
                 setGroups(data);
@@ -66,7 +66,7 @@ export default function Groups() {
         }
         else {
         
-        fetch("http://localhost:6001/listings", {
+        fetch("https://sports-data.onrender.com/listings", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
