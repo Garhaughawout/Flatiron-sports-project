@@ -1,27 +1,76 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
 .groups-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 1vw;
-    margin: 1vw 9vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex: 2;
 }
 
 .group-form-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 2vw 9vw;
+    flex: 1;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.group-form-container h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
 }
 
 .group-form {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.group-form label {
+    font-size: 16px;
+    color: #555;
+}
+
+.group-form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+    transition: border-color 0.3s;
+}
+
+.input-button:focus {
+    border-color: #4CAF50;
+    outline: none;
 }
 
 .group-form-submit {
+    padding: 12px 20px;
     border: none;
-    background-color: #2e3944;
+    border-radius: 4px;
+    background-color: #333;
     color: white;
-    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
+    align-self: center;
+    transition: background-color 0.3s;
+}
+
+.group-form-submit:hover {
+    background-color: #555;
 }

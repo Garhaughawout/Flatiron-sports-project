@@ -1,3 +1,6 @@
 body {
     background-color: #d3d9d4;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }

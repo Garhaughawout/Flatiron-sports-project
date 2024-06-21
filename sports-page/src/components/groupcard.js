@@ -4,6 +4,7 @@ import '../Styles/groupcard.css';
 
 export default function Groupcard({ image, sport, location, time, date, skill, people }) {
     
+
     return (
         <div className="card-container">
             <div className="card-image-container">
