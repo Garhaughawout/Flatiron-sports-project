@@ -1,3 +1,4 @@
+/* Base styles */
 .header {
     background-color: #2e3944;
     display: flex;
@@ -20,15 +21,13 @@
     flex-direction: row;
     align-items: center;
     justify-content: left;
-    margin-left:  5vw;
+    margin-left: 5vw;
 }
 
 .header-image {
     width: 50px;
     height: 50px;
 }
-
-
 
 .link-button-container {
     margin-left: auto;
@@ -61,4 +60,86 @@
 
 .link-button:active {
     font-size: 110%;
+}
+
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .header {
+        padding: 20px;
+        font-size: calc(10px + 1vmin);
+    }
+    .link-button {
+        font-size: 22px;
+        width: 120px;
+        height: 60px;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
+        font-size: calc(8px + 1vmin);
+    }
+    .header-left {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .link-button-container {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .link-button {
+        font-size: 18px;
+        width: 90px;
+        height: 45px;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+        font-size: calc(7px + 1vmin);
+    }
+    .header-left {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    .link-button-container {
+        margin-left: 0;
+        margin-top: 8px;
+    }
+    .link-button {
+        font-size: 16px;
+        width: 80px;
+        height: 40px;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 5px;
+        font-size: calc(6px + 1vmin);
+    }
+    .header-left {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .link-button-container {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    .link-button {
+        font-size: 14px;
+        width: 70px;
+        height: 35px;
+    }
 }

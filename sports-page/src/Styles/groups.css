@@ -1,3 +1,4 @@
+/* Base styles */
 .container {
     display: flex;
     justify-content: space-between;
@@ -74,3 +75,125 @@
 .group-form-submit:hover {
     background-color: #555;
 }
+
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .container {
+        padding: 30px;
+        gap: 30px;
+    }
+    .group-form-container {
+        padding: 30px;
+    }
+    .group-form-container h2 {
+        font-size: 26px;
+    }
+    .group-form label {
+        font-size: 18px;
+    }
+    .input-button {
+        padding: 12px;
+        font-size: 16px;
+    }
+    .group-form-submit {
+        padding: 14px 24px;
+        font-size: 18px;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        gap: 20px;
+    }
+    .groups-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container h2 {
+        font-size: 22px;
+    }
+    .group-form label {
+        font-size: 16px;
+    }
+    .input-button {
+        padding: 10px;
+        font-size: 14px;
+    }
+    .group-form-submit {
+        padding: 12px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+        gap: 15px;
+    }
+    .groups-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container h2 {
+        font-size: 20px;
+    }
+    .group-form label {
+        font-size: 14px;
+    }
+    .input-button {
+        padding: 8px;
+        font-size: 12px;
+    }
+    .group-form-submit {
+        padding: 10px 16px;
+        font-size: 14px;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        gap: 10px;
+    }
+    .groups-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container {
+        flex: 1;
+        width: 100%;
+    }
+    .group-form-container h2 {
+        font-size: 18px;
+    }
+    .group-form label {
+        font-size: 12px;
+    }
+    .input-button {
+        padding: 6px;
+        font-size: 10px;
+    }
+    .group-form-submit {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+

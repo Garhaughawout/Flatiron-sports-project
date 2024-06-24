@@ -1,48 +1,67 @@
-.sliderimg{
-    width: 810px;
-    height: 500px;
-    display: block;
-    border-radius: 10px;
-    margin: auto;
-    margin-top: 20px;
-    }
-
-.home-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 20px 20%;
-    font-family: 'inter', sans-serif;
-    font-weight: 600;
+/* General container styling */
+.image-carousel {
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Styling for images in the carousel */
+.sliderimg {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Home content styling */
+.home-content {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f9f9f9;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 20px 0;
+}
+
+.home-content h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.home-content p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Styling for buttons on the homepage */
 .homepage-buttons {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    margin: 20px 19vw;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
 }
+
 .homepage-link {
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    font-size: 1vw;
-    margin: 10px;
+    color: white;
 }
 
 .homepage-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
     background-color: #1b1b1b;
     color: white;
-    border: none;
-    font-size: 1vw;
+    font-size: 16px;
     cursor: pointer;
-    width: 7.5vw;
-    height: 60px;
-    margin: 1vw .5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.homepage-button:hover {
+    background-color: rgb(95, 95, 95);
 }

@@ -1,5 +1,6 @@
+/* Base styles */
 .footer {
-    background-color: #333;
+    background-color: #2e3944;
     color: white;
     text-align: center;
     padding: 10px;
@@ -14,4 +15,52 @@
     border-radius: 5px;
     padding: 10px;
     background-color: white;
+}
+
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .footer {
+        padding: 20px;
+    }
+    .footer-link {
+        margin: 15px;
+        padding: 15px;
+        font-size: 1vw;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .footer {
+        padding: 15px;
+    }
+    .footer-link {
+        margin: 12px;
+        padding: 12px;
+        font-size: 1.5vw;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .footer {
+        padding: 10px;
+    }
+    .footer-link {
+        margin: 10px;
+        padding: 10px;
+        font-size: 2vw;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .footer {
+        padding: 8px;
+    }
+    .footer-link {
+        margin: 8px;
+        padding: 8px;
+        font-size: 3vw;
+    }
 }

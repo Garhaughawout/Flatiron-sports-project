@@ -1,3 +1,4 @@
+/* Base styles */
 .about-container {
     display: flex;
     flex-direction: column;
@@ -9,7 +10,6 @@
 .about-header {
     font-size: 1.5vw;
     font-weight: 600;
-
 }
 
 .about-information {
@@ -27,4 +27,53 @@
 .aboutpage-list {
     margin: 0;
     padding: .5vw;
+}
+
+/* Styles for screens larger than 1200px */
+@media (min-width: 1200px) {
+    .about-header {
+        font-size: 1.5vw;
+    }
+    .about-information {
+        font-size: 1vw;
+    }
+}
+
+/* Styles for screens between 768px and 1199px */
+@media (min-width: 768px) and (max-width: 1199px) {
+    .about-header {
+        font-size: 2vw;
+    }
+    .about-information {
+        font-size: 1.5vw;
+    }
+    .about-container {
+        margin: 2vw 7vw;
+    }
+}
+
+/* Styles for screens between 480px and 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .about-header {
+        font-size: 3vw;
+    }
+    .about-information {
+        font-size: 2vw;
+    }
+    .about-container {
+        margin: 3vw 5vw;
+    }
+}
+
+/* Styles for screens smaller than 480px */
+@media (max-width: 479px) {
+    .about-header {
+        font-size: 4vw;
+    }
+    .about-information {
+        font-size: 3vw;
+    }
+    .about-container {
+        margin: 4vw 3vw;
+    }
 }
