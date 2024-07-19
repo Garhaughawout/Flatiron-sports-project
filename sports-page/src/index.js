@@ -8,7 +8,6 @@ import Header from './components/Header';
 import About from './components/About';
 import Groups from './components/Groups';
 import Footer from './components/footer';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const router = createBrowserRouter([
     {
