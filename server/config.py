@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -6,12 +7,9 @@ from flask_migrate import Migrate
 from sqlalchemy import MetaData
 from flask_restful import Api
 
-DATABASE = 'sqlite:///db.sqlite3'
-
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE
-
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://get_upproject_database_user:pwrvQDAHYwytX3Beoj9huHjf4pPVZ4XH@dpg-cqd9kql6l47c73fr4t30-a.oregon-postgres.render.com/get_upproject_database'
 
 metadata = MetaData(naming_convention={
     "ix": "ix_%(column_0_label)s",
