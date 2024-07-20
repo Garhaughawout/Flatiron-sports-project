@@ -9,7 +9,7 @@ from flask_restful import Api
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://get_upproject_database_user:pwrvQDAHYwytX3Beoj9huHjf4pPVZ4XH@dpg-cqd9kql6l47c73fr4t30-a.oregon-postgres.render.com/get_upproject_database'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://get_upproject_database_j4ei_user:D2xlVCso9KHLAP9CDB0GNXzRlBQjqi25@dpg-cqdfs71u0jms738or0h0-a.oregon-postgres.render.com/get_upproject_database_j4ei'
 
 metadata = MetaData(naming_convention={
     "ix": "ix_%(column_0_label)s",
