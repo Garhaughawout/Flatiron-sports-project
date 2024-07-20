@@ -4,6 +4,7 @@ from models import User
 from flask_restful import Resource
 
 
+
 @app.route('/')
 def index():
     users = User.query.all()
@@ -14,7 +15,7 @@ def index():
 def add_user(username):
     db.session.add(User(username=username))
     db.session.commit()
-    return redirect(url_for('app.index'))
+    return redirect(url_for('index'))
 
 
 
