@@ -24,7 +24,7 @@ export default function Groups({ user }) {
 
 
     useEffect(() => {
-        fetch("http://localhost:5000/groups")
+        fetch("https://flatiron-sports-project-api.onrender.com/groups")
             .then((res) => res.json())
             .then((data) => {
                 setGroups(data);
@@ -68,7 +68,7 @@ export default function Groups({ user }) {
             alert("Please fill out all the information.");
             return;
         }
-        fetch("http://localhost:5000/group", {
+        fetch("https://flatiron-sports-project-api.onrender.com/group", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

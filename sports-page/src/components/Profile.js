@@ -6,7 +6,7 @@ export default function Profile({user}) {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user}`, {
+        fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',

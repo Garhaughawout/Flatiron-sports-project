@@ -6,7 +6,7 @@ export default function Logout() {
     const handleLogout = async (event) => {
         event.preventDefault();
         try {
-            await axios.delete("http://localhost:5000/logout", {
+            await axios.delete("https://flatiron-sports-project-api.onrender.com/logout", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
