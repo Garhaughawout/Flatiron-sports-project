@@ -84,6 +84,7 @@
     }
     .group-form-container {
         padding: 30px;
+        max-height: 750px;
     }
     .group-form-container h2 {
         font-size: 26px;

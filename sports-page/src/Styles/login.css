@@ -1,0 +1,109 @@
+/* login.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75vh;
+    background-color: #f4f4f4;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-form-title {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form-input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.login-submit-button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-submit-button:hover {
+    background-color: #0056b3;
+}
+
+.bad-entry-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .login-form-container {
+        padding: 15px;
+    }
+
+    .login-form-input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .login-submit-button {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .login-form-title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form-container {
+        width: 90%;
+        padding: 10px;
+    }
+
+    .login-form-input {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .login-submit-button {
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .login-form-title {
+        font-size: 20px;
+    }
+
+    .bad-entry-message {
+        font-size: 12px;
+    }
+}

@@ -1,145 +1,127 @@
-/* Base styles */
+/* General header styling */
 .header {
-    background-color: #2e3944;
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    justify-content: left;
-    font-size: calc(7px + 1vmin);
+    padding: 10px 20px;
+    background-color: #2e3944; /* Match footer background color */
     color: white;
-    padding: 15px;
-    font-family: 'inter', sans-serif;
-}
-
-.header-name {
-    margin-left: 1vw;
-    letter-spacing: 2px;
 }
 
 .header-left {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: left;
-    margin-left: 5vw;
 }
 
 .header-image {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.header-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; /* Ensure text color matches the footer */
 }
 
 .link-button-container {
-    margin-left: auto;
-    margin-right: 20px;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: left;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.link-button {
-    background-color: #2e3944;
-    color: white;
-    border: none;
-    font-size: 20px;
+.link-button,
+.link-button-logout {
     margin-left: 20px;
-    cursor: pointer;
     text-decoration: none;
-    width: 100px;
-    height: 50px;
+    color: white; /* Match footer link color */
+    font-size: 18px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.link-button-logout:hover {
+    text-decoration: underline;
+}
+
+/* Hamburger menu styling */
+.hamburger-menu {
+    display: none;
+}
+
+.hamburger-icon {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white; /* Match footer link color */
+    cursor: pointer;
+}
+
+.hamburger-links {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    flex-direction: column;
+    background-color: #2e3944; /* Match footer background color */
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
 }
 
-.link-button:hover {
-    color: #777777;
+.hamburger-link,
+.hamburger-link-button {
+    text-decoration: none;
+    color: white; /* Match footer link color */
+    margin: 10px 0;
+    font-size: 18px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 8px 10px;
 }
 
-.link-button:active {
-    font-size: 110%;
+.hamburger-link:hover,
+.hamburger-link-button:hover {
+    text-decoration: underline;
 }
 
-/* Styles for screens larger than 1200px */
-@media (min-width: 1200px) {
-    .header {
-        padding: 20px;
-        font-size: calc(10px + 1vmin);
-    }
-    .link-button {
-        font-size: 22px;
-        width: 120px;
-        height: 60px;
-    }
-}
-
-/* Styles for screens between 768px and 1199px */
-@media (min-width: 768px) and (max-width: 1199px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 15px;
-        font-size: calc(8px + 1vmin);
-    }
-    .header-left {
-        margin-left: 0;
-        margin-top: 10px;
-    }
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
     .link-button-container {
-        margin-left: 0;
-        margin-top: 10px;
+        display: none;
     }
-    .link-button {
-        font-size: 18px;
-        width: 90px;
-        height: 45px;
+
+    .hamburger-menu {
+        display: block;
+        z-index: 100000;
+    }
+
+    .header-name {
+        font-size: 20px;
     }
 }
 
-/* Styles for screens between 480px and 767px */
-@media (min-width: 480px) and (max-width: 767px) {
+@media (max-width: 480px) {
     .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 10px;
-        font-size: calc(7px + 1vmin);
+        flex-direction: row;
     }
-    .header-left {
-        margin-left: 0;
-        margin-top: 8px;
-    }
-    .link-button-container {
-        margin-left: 0;
-        margin-top: 8px;
-    }
-    .link-button {
-        font-size: 16px;
-        width: 80px;
-        height: 40px;
-    }
-}
 
-/* Styles for screens smaller than 480px */
-@media (max-width: 479px) {
-    .header {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 5px;
-        font-size: calc(6px + 1vmin);
-    }
+    
+
     .header-left {
-        margin-left: 0;
-        margin-top: 5px;
+        width: 100%;
+        justify-content: left;
     }
-    .link-button-container {
-        margin-left: 0;
-        margin-top: 5px;
-    }
-    .link-button {
-        font-size: 14px;
-        width: 70px;
-        height: 35px;
+    
+    .hamburger-links {
+        right: 10px;
     }
 }
