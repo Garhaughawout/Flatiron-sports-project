@@ -1,7 +1,7 @@
 from flask import request, jsonify, session
 from config import db, bcrypt, app
 from models import User, Group
-from flask_jwt_extended import create_access_token, jwt_required, current_user
+from flask_jwt_extended import create_access_token, jwt_required, create_refresh_token, get_jwt_identity
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,9 +42,10 @@ def login():
     user = User.query.filter_by(username=username).first()
     if user and bcrypt.check_password_hash(user.password, password):
         access_token = create_access_token(identity=user.uid)
+        refresh_token = create_refresh_token(identity=user.uid)
         session['user_id'] = user.uid
         user = User.query.filter_by(username=username).first()
-        return jsonify({'access_token': access_token}, {'username': user.username, 'email': user.email, 'uid': user.uid, 'password': user.password})
+        return jsonify({'access_token': access_token}, {'username': user.username, 'email': user.email, 'uid': user.uid, 'password': user.password}, {'refresh_token': refresh_token})
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
     
@@ -68,13 +69,19 @@ def get_groups():
     groups = Group.query.all()
     return jsonify([group.serialize() for group in groups])
     
-@app.route('/group/<int:user_id>', methods=['GET'])
-def get_group(user_id):
-    groups = Group.query.get(user_id)
-    if groups:
-        return jsonify(groups.serialize())
-    else:
-        return jsonify({'message': 'Group not found'}), 404
+@app.route('/group/<int:id>', methods=['DELETE','GET'])
+def get_group(id):
+    if request.method == 'DELETE':
+        group = Group.query.get(id)
+        db.session.delete(group)
+        db.session.commit()
+        return jsonify({'message': 'Group deleted'})
+    else: 
+        group = Group.query.get(id)
+        if group:
+            return jsonify(group.serialize())
+        else:
+            return jsonify({'message': 'Group not found'}), 404
     
 @app.route('/group', methods=['POST'])
 def create_group():

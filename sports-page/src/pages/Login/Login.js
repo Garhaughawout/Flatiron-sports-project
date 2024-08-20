@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
-import "../Styles/login.css";
+import "../../Styles/login.css";
 
 function Login( {onLogin, setAuth} ) {
     const [password, setPassword] = useState("");
@@ -18,6 +18,7 @@ function Login( {onLogin, setAuth} ) {
             password,
         });
         localStorage.setItem("access_token", response.data[0].access_token);
+        localStorage.setItem("refresh_token", response.data[2].refresh_token);
         localStorage.setItem('uid', response.data[1]['uid']);
         setAuth(true);
         onLogin(response.data[1]['uid']);

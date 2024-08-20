@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Styles/about.css';
+import '../../Styles/about.css';
 import { Link } from 'react-router-dom';
 
 
@@ -30,10 +30,10 @@ export default function About() {
                 </ul>
                 <br></br>
                 <h3>Get Involved</h3>
-                <p>Ready to join the fun? Creating an account on [Your Website Name] is quick and easy. Simply sign up, create your profile, and start browsing upcoming events in your area. Whether you're looking to join a pickup game, organize a tournament, or simply meet new friends who share your passion for sports, you'll find everything you need right here. </p>
+                <p>Ready to join the fun? Creating an account on Get Up is quick and easy. Simply sign up, create your profile, and start browsing upcoming events in your area. Whether you're looking to join a pickup game, organize a tournament, or simply meet new friends who share your passion for sports, you'll find everything you need right here. </p>
                 <br></br>
                 <h3>Get Up and Get Active!</h3>
-                <p>Don't miss out on the opportunity to be part of our vibrant sports community. Join [Your Website Name] today and take the first step toward discovering new friendships, exploring exciting sports activities, and making memories that will last a lifetime.</p>
+                <p>Don't miss out on the opportunity to be part of our vibrant sports community. Join Get Up today and take the first step toward discovering new friendships, exploring exciting sports activities, and making memories that will last a lifetime.</p>
             </div>
             <div className="aboutpage-buttons">
                 <button className="homepage-button"><Link to="/groups" className="homepage-link">Find Groups</Link></button>

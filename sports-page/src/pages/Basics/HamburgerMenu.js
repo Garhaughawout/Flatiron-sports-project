@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../Styles/HamburgerMenu.css';
 
 function HamburgerMenu({ user, handleLogout }) {
     const [isOpen, setIsOpen] = useState(false);

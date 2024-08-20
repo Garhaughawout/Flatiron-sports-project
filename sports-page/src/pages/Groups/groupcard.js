@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import '../Styles/groupcard.css';
+import '../../Styles/groupcard.css';
+import Button from '@mui/material/Button';
+import { createTheme } from "@mui/material/styles";
+import { ThemeProvider } from "@mui/system";
+import { Stack } from "@mui/material";
 
 
-export default function Groupcard({ image, sport, location, time, date, skill, people, timeBefore }) {
+export default function Groupcard({image, sport, location, time, date, skill, people, timeBefore, theme}) {
     const [finalTime, setFinalTime] = useState("");
 
     useEffect(() => {
@@ -28,6 +32,13 @@ export default function Groupcard({ image, sport, location, time, date, skill, p
                 <p><span className="card-bold">Date:</span> {date}</p>
                 <p><span className="card-bold">Skill Level:</span> {skill}</p>
                 <p><span className="card-bold">People Needed:</span> {people}</p>
+            </div>
+            <div className="groupcard-buttons-container">
+                <ThemeProvider theme={theme}>
+                    <Stack direction="row" spacing={2}>
+                        <Button variant="contained">View</Button>
+                    </Stack>
+                </ThemeProvider>
             </div>
         </div>
     )

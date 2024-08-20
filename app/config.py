@@ -13,7 +13,7 @@ app.config['SECRET_KEY'] = 'your_secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['JWT_SECRET_KEY'] = 'jwt_secret'
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
-
+app.config['JWT_ACCESS_TOKEN_EXPIRES'] = False
 
 db.init_app(app)
 bcrypt.init_app(app)

@@ -1,15 +1,20 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import Groupcard from "./groupcard";
-import image1 from '../images/Basketball.jpg';
-import image2 from '../images/Football.webp';
-import image3 from '../images/Soccer.jpg';
-import image4 from '../images/pickleball.jpg';
-import image5 from '../images/Volleyball.jpg';
-import '../Styles/groups.css';
+import image1 from '../../images/Basketball.jpg';
+import image2 from '../../images/Football.webp';
+import image3 from '../../images/Soccer.jpg';
+import image4 from '../../images/pickleball.jpg';
+import image5 from '../../images/Volleyball.jpg';
+import '../../Styles/groups.css';
+
+import Button from '@mui/material/Button';
+import { ThemeProvider } from "@mui/material";
+import { Stack } from "@mui/material";
 
 
-export default function Groups({ user }) {
+
+export default function Groups({ user, theme }) {
     const [groups, setGroups] = useState([]);
     const [timeBefore, setTimeBefore] = useState("");
     const [formInformation, setFormInformation] = useState({
@@ -21,15 +26,6 @@ export default function Groups({ user }) {
         people: "",
         user_id: user,
     });
-
-
-    useEffect(() => {
-        fetch("https://flatiron-sports-project-api.onrender.com/groups")
-            .then((res) => res.json())
-            .then((data) => {
-                setGroups(data);
-            });
-    }, []);
 
     function selectImage(sport) {
         if (sport === "Basketball") {
@@ -44,23 +40,14 @@ export default function Groups({ user }) {
             return image5;
         }
     }
-    
-    function renderGroups() {
-        return groups.map((group) => {
-            return <Groupcard 
-            image={selectImage(group.sport)}
-            timeBefore={timeBefore} 
-            key={group.id} 
-            sport={group.sport} 
-            location={group.location}
-            time={group.time}
-            date={group.date}
-            skill={group.skill_level}
-            people={group.people_needed}
-            user_id={group.user_id}
-            />;
-        });
-    }
+
+    useEffect(() => {
+        fetch("https://flatiron-sports-project-api.onrender.com/groups")
+            .then((res) => res.json())
+            .then((data) => {
+                setGroups(data);
+            });
+    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -68,7 +55,7 @@ export default function Groups({ user }) {
             alert("Please fill out all the information.");
             return;
         }
-        fetch("https://flatiron-sports-project-api.onrender.com/group", {
+        fetch('https://flatiron-sports-project-api.onrender.com/group', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -82,15 +69,6 @@ export default function Groups({ user }) {
             });
             window.location.reload();
             alert("Group Created!");
-    }
-
-
-    function editFormInformation(e) {
-        setFormInformation({
-            ...formInformation,
-            user_id: user,
-            [e.target.name]: e.target.value,
-        });
     }
 
 
@@ -116,11 +94,36 @@ export default function Groups({ user }) {
             ...formInformation,
             time: time,
         });
-        console.log(time);
     }
 
-    if (groups.length === 0) {
-        return <h1>Come back in a couple minutes. The Data needs to load to function.</h1>;
+    function editFormInformation(e) {
+        setFormInformation({
+            ...formInformation,
+            user_id: user,
+            [e.target.name]: e.target.value,
+        });
+    }
+
+    function renderGroups() {
+        if (groups.length === 0) {
+            return <h2>No groups available</h2>;
+        }
+        return groups.map((group) => {
+            return <Groupcard 
+            image={selectImage(group.sport)}
+            timeBefore={timeBefore} 
+            key={group.id}
+            id={group.id} 
+            sport={group.sport} 
+            location={group.location}
+            time={group.time}
+            date={group.date}
+            skill={group.skill_level}
+            people={group.people_needed}
+            user={group.user_id}
+            theme={theme}
+            />;
+        });
     }
 
     return (
@@ -167,7 +170,11 @@ export default function Groups({ user }) {
                 People Needed:
                 <input type="number" name="people" value={formInformation.people} onChange={editFormInformation} className="input-button" placeholder="Enter the people needed..." />
             </label>
-            <input className="group-form-submit" type="submit" value="Create Group" onClick={handleSubmit} />
+            <ThemeProvider theme={theme}>
+                <Stack direction="row" spacing={2}>
+                <Button onClick={handleSubmit} variant="contained">Create Group</Button>
+                </Stack>
+            </ThemeProvider>
         </form>
     </div>
     </div>

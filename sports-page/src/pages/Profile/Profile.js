@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 export default function Profile({user}) {
     const [userDetails, setUserDetails] = useState(null);
 
-
+    console.log(userDetails);
     useEffect(() => {
         fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
             method: 'GET',
@@ -20,14 +20,14 @@ export default function Profile({user}) {
         .catch((error) => {
             console.error('Error:', error);
         });
-    }, []);    
-    
+    }, []);
+
     const handleLoading = () => {
         if (userDetails) {
             return (
                 <div>
-                    <h2>Username: {userDetails['username']}</h2>
-                    <h2>Email: {userDetails['email']}</h2>
+                    <h2>Username: {userDetails.username}</h2>
+                    <h2>Email: {userDetails.email}</h2>
                 </div>
             )
         } else {

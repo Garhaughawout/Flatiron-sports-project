@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../Styles/header.css';
+import '../../Styles/header.css';
 import axios from 'axios';
 import HamburgerMenu from './HamburgerMenu';
 

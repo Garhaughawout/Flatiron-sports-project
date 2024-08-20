@@ -3,16 +3,16 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
-import Header from './Header';
-import Home from './Home';
-import Footer from './footer';
-import About from './About';
-import Login from './Login';
-import Signup from './Signup';
-import Groups from './Groups';
-import Logout from './Logout';
-import Profile from './Profile';
+import Header from './Basics/Header';
+import Home from './Home/Home';
+import Footer from './Basics/footer';
+import About from './About/About';
+import Login from './Login/Login';
+import Signup from './Signup/Signup';
+import Groups from './Groups/Groups';
+import Profile from './Profile/Profile';
 import { Navigate } from 'react-router-dom';
+import { createTheme } from "@mui/material/styles";
 
 
 export default function App() {
@@ -27,17 +27,26 @@ export default function App() {
     }
     , []);
 
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: "#2e3944",
+                light: "rgb(95, 95, 95)",
+                dark: "rgb(95, 95, 95)",
+            }
+        },
+    })
+
     const router = (
         <Router>
             <Header user={user}/>
             <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/" element={<Home theme={theme}/>} />
                 <Route path="/about" element={<About />} />
                 <Route path="/login" element={user !== null ? <Navigate to='/'/>:<Login onLogin={setUser} user={user} setAuth={setAuth} auth={auth}/>} />
-                <Route path="/logout" element={<Logout />} />
                 <Route path="/profile" element={user === null ? <Navigate to='/login'/> : <Profile user={user}/>} />
                 <Route path="/signup" element={<Signup />} />
-                <Route path="/groups" element={<Groups user={user}/>} />
+                <Route path="/groups" element={<Groups user={user} theme={theme}/>} />
             </Routes>
             <Footer/>
         </Router>
