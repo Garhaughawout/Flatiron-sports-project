@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 export default function Profile({user}) {
     const [userDetails, setUserDetails] = useState(null);
 
-    console.log(userDetails);
     useEffect(() => {
         fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
             method: 'GET',

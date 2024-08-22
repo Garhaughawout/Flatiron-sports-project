@@ -34,6 +34,7 @@ class Group(db.Model):
     date = db.Column(db.String(50), nullable=False)
     time = db.Column(db.String(50), nullable=False)
     people_needed = db.Column(db.Integer, nullable=False)
+    people_list = db.Column(db.String(200), nullable=True)
     user_id = db.Column(db.Integer, nullable=False)
     
 

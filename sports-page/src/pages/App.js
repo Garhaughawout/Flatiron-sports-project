@@ -1,5 +1,6 @@
 import '../Styles/App.css';
 import React from 'react';
+import axios from 'axios';
 import {useState, useEffect} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
@@ -11,6 +12,7 @@ import Login from './Login/Login';
 import Signup from './Signup/Signup';
 import Groups from './Groups/Groups';
 import Profile from './Profile/Profile';
+import GroupPage from './Groups/Grouppage';
 import { Navigate } from 'react-router-dom';
 import { createTheme } from "@mui/material/styles";
 
@@ -47,6 +49,7 @@ export default function App() {
                 <Route path="/profile" element={user === null ? <Navigate to='/login'/> : <Profile user={user}/>} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/groups" element={<Groups user={user} theme={theme}/>} />
+                <Route path="/group/:id" element={<GroupPage user={user}/>} />
             </Routes>
             <Footer/>
         </Router>

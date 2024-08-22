@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import '../../Styles/groupcard.css';
 import Button from '@mui/material/Button';
 import { createTheme } from "@mui/material/styles";
@@ -7,7 +8,7 @@ import { ThemeProvider } from "@mui/system";
 import { Stack } from "@mui/material";
 
 
-export default function Groupcard({image, sport, location, time, date, skill, people, timeBefore, theme}) {
+export default function Groupcard({id, image, sport, location, time, date, skill, people, timeBefore, theme, user}) {
     const [finalTime, setFinalTime] = useState("");
 
     useEffect(() => {
@@ -19,6 +20,10 @@ export default function Groupcard({image, sport, location, time, date, skill, pe
             return
         }  
     }, []);
+
+    function handleRedirect() {
+        window.location.href = `/group/${id}`;
+    }
 
     return (
         <div className="card-container">
@@ -36,7 +41,7 @@ export default function Groupcard({image, sport, location, time, date, skill, pe
             <div className="groupcard-buttons-container">
                 <ThemeProvider theme={theme}>
                     <Stack direction="row" spacing={2}>
-                        <Button variant="contained">View</Button>
+                        <Button variant="contained" onClick={handleRedirect}>View</Button>
                     </Stack>
                 </ThemeProvider>
             </div>
