@@ -5,6 +5,8 @@ export default function Signup() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastName] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +18,9 @@ export default function Signup() {
             body: JSON.stringify({
                 username: username,
                 email: email,
-                password: password
+                password: password,
+                first_name: first_name,
+                last_name: last_name
             })
         })
         .then(response => response.json())
@@ -37,6 +41,22 @@ export default function Signup() {
                     placeholder='Username' 
                     value={username} 
                     onChange={(e) => setUsername(e.target.value)} 
+                />
+                <input 
+                    className="signup-form-input" 
+                    type='text' 
+                    name='first_name' 
+                    placeholder='First Name' 
+                    value={first_name} 
+                    onChange={(e) => setFirstName(e.target.value)}
+                />
+                <input 
+                    className="signup-form-input" 
+                    type='text' 
+                    name='last_name' 
+                    placeholder='Last Name' 
+                    value={last_name} 
+                    onChange={(e) => setLastName(e.target.value)}
                 />
                 <input 
                     className="signup-form-input"

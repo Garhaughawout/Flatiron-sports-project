@@ -7,9 +7,11 @@ export default function GroupPage({user}) {
     const { id } = useParams();
     const [group, setGroup] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
+    const [groupPlayers, setGroupPlayers] = useState(null);
+    const [joined, setJoined] = useState(false);
 
     useEffect(() => {
-        axios.get(`https://flatiron-sports-project-api.onrender.com/group/${id}`)
+        axios.get(`http://localhost:5000/group/${id}`)
         .then(response => {
             setGroup(response.data);
         })
@@ -25,7 +27,6 @@ export default function GroupPage({user}) {
             'Authorization': `Bearer ${localStorage.getItem('access_token')}`
         } }
         )
-
         .then(response => {
             setUserDetails(response.data);
         })
@@ -33,6 +34,63 @@ export default function GroupPage({user}) {
             console.error('Error:', error);
         });
     }, [user]);
+
+    function handlePlayers() {
+        if (group.people_list) {
+            return (
+                <ul className=''>
+                    {group.people_list.split(',').map((player) => {
+                        return (
+                            <li className='player-name'>{player}</li>
+                        )
+                    })}
+                </ul>
+            )
+        }
+    }
+
+    function handleJoin() {
+        if (joined == false) {
+            
+            axios.post(`http://localhost:5000/group/${id}`, {
+                people_list: userDetails.first_name + ' ' + userDetails.last_name
+            })
+            .then(response => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        else {
+            axios.post(`http://localhost:5000/group/${id}`, {
+                data: {
+                    people_list: userDetails.first_name + ' ' + userDetails.last_name
+                }
+            })
+            .then(response => {
+                window.location.reload();
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+        
+    }
+
+    function handleJoinButton() {
+        if (group.people_list) {
+            if (group.people_list.split(',').includes(userDetails.first_name + ' ' + userDetails.last_name)) {
+                return (
+                    <button onClick={handleJoin}>Leave</button>
+                )
+            } else {
+                return (
+                    <button onClick={handleJoin}>Join</button>
+                )
+            }
+        }
+    }
 
     function handleLoading() {
         if (userDetails) {
@@ -49,6 +107,10 @@ export default function GroupPage({user}) {
                     </div>
                     <div>
                         <h2>Players</h2>
+                        {handlePlayers()}
+                    </div>
+                    <div>
+                        {handleJoinButton()}
                     </div>
                 </div>
             )

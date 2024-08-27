@@ -24,9 +24,11 @@ def signup():
         username = request_data.get('username')
         password = request_data.get('password')
         email = request_data.get('email')
+        first_name = request_data.get('first_name')
+        last_name = request_data.get('last_name')
 
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-        user = User(username=username, password=hashed_password, email=email)
+        user = User(username=username, password=hashed_password, email=email, first_name=first_name, last_name=last_name)
 
         db.session.add(user)
         db.session.commit()
@@ -69,13 +71,29 @@ def get_groups():
     groups = Group.query.all()
     return jsonify([group.serialize() for group in groups])
     
-@app.route('/group/<int:id>', methods=['DELETE','GET'])
+@app.route('/group/<int:id>', methods=['DELETE','GET', 'POST'])
 def get_group(id):
     if request.method == 'DELETE':
         group = Group.query.get(id)
         db.session.delete(group)
         db.session.commit()
         return jsonify({'message': 'Group deleted'})
+    elif request.method == 'POST':
+        group = Group.query.get(id)
+        request_data = request.get_json()
+        people_list = request_data.get('people_list')
+        group_list = group.people_list.split(',')
+
+        for person in group_list:
+            if person == people_list:
+                group_list.remove(person)
+                group.people_list = ','.join(group_list)
+                db.session.commit()
+                return jsonify({'message': 'Person removed from the Group'})   
+        else:
+            group.people_list = group.people_list + ',' + people_list
+            db.session.commit()
+            return jsonify({'message': 'Group updated'})
     else: 
         group = Group.query.get(id)
         if group:
@@ -100,6 +118,7 @@ def create_group():
     db.session.commit()
     
     return jsonify({'message': 'Group created'})
+    
 
 if __name__ == '__main__':
     app.run(debug=True)

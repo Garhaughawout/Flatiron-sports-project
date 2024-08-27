@@ -6,18 +6,24 @@ class User(db.Model):
     uid = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
+    first_name = db.Column(db.String(50), nullable=True)
+    last_name = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
 
-    def __init__(self, username, password, email):
+    def __init__(self, username, password, email, first_name, last_name):
         self.username = username
         self.password = password
         self.email = email
+        self.first_name = first_name
+        self.last_name = last_name
 
     def serialize(self):
         return {
             'uid': self.uid,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name
         }
 
     def __repr__(self):
@@ -38,13 +44,14 @@ class Group(db.Model):
     user_id = db.Column(db.Integer, nullable=False)
     
 
-    def __init__(self, sport, location, skill_level, date, time, user_id, people_needed):
+    def __init__(self, sport, location, skill_level, date, time, user_id, people_needed, people_list):
         self.sport = sport
         self.location = location
         self.skill_level = skill_level
         self.date = date
         self.time = time
         self.people_needed = people_needed
+        self.people_list = people_list
         self.user_id = user_id
 
     def serialize(self):
@@ -56,6 +63,7 @@ class Group(db.Model):
             'date': self.date,
             'time': self.time,
             'people_needed': self.people_needed,
+            'people_list': self.people_list,
             'user_id': self.user_id
         }
     
