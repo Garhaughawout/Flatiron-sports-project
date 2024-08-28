@@ -6,9 +6,10 @@ import Button from '@mui/material/Button';
 import { createTheme } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/system";
 import { Stack } from "@mui/material";
+import axios from 'axios';
 
 
-export default function Groupcard({id, image, sport, location, time, date, skill, people, timeBefore, theme, user}) {
+export default function Groupcard({id, image, sport, location, time, date, skill, people, timeBefore, theme, user, people_list, userDetails}) {
     const [finalTime, setFinalTime] = useState("");
 
     useEffect(() => {
@@ -18,8 +19,8 @@ export default function Groupcard({id, image, sport, location, time, date, skill
         } else {
             setFinalTime(time + ' ' + "AM");
             return
-        }  
-    }, []);
+            }  
+        }, []);
 
     function handleRedirect() {
         window.location.href = `/group/${id}`;

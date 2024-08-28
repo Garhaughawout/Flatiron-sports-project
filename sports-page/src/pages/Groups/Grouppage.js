@@ -2,6 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Header from '../Basics/Header';
+import image1 from '../../images/Basketball.jpg';
+import image2 from '../../images/Football.webp';
+import image3 from '../../images/Soccer.jpg';
+import image4 from '../../images/pickleball.jpg';
+import image5 from '../../images/Volleyball.jpg';
+import '../../Styles/Grouppage.css';
 
 export default function GroupPage({user}) {
     const { id } = useParams();
@@ -9,9 +15,10 @@ export default function GroupPage({user}) {
     const [userDetails, setUserDetails] = useState(null);
     const [groupPlayers, setGroupPlayers] = useState(null);
     const [joined, setJoined] = useState(false);
+    const [image, setImage] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/group/${id}`)
+        axios.get(`https://flatiron-sports-project-api.onrender.com/group/${id}`)
         .then(response => {
             setGroup(response.data);
         })
@@ -21,7 +28,7 @@ export default function GroupPage({user}) {
     }, []);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/user/${user}`, 
+        axios.get(`https://flatiron-sports-project-api.onrender.com/user/${user}`, 
         { headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -38,10 +45,10 @@ export default function GroupPage({user}) {
     function handlePlayers() {
         if (group.people_list) {
             return (
-                <ul className=''>
+                <ul className='group-page-players-list'>
                     {group.people_list.split(',').map((player) => {
                         return (
-                            <li className='player-name'>{player}</li>
+                            <li className='group-page-players-list-item'>{player}</li>
                         )
                     })}
                 </ul>
@@ -51,11 +58,11 @@ export default function GroupPage({user}) {
 
     function handleJoin() {
         if (joined == false) {
-            
-            axios.post(`http://localhost:5000/group/${id}`, {
+            axios.post(`https://flatiron-sports-project-api.onrender.com/group/${id}`, {
                 people_list: userDetails.first_name + ' ' + userDetails.last_name
             })
             .then(response => {
+                setJoined(true);
                 window.location.reload();
             })
             .catch((error) => {
@@ -63,12 +70,13 @@ export default function GroupPage({user}) {
             });
         }
         else {
-            axios.post(`http://localhost:5000/group/${id}`, {
+            axios.post(`https://flatiron-sports-project-api.onrender.com/group/${id}`, {
                 data: {
                     people_list: userDetails.first_name + ' ' + userDetails.last_name
                 }
             })
             .then(response => {
+                setJoined(false);
                 window.location.reload();
             })
             .catch((error) => {
@@ -92,32 +100,62 @@ export default function GroupPage({user}) {
         }
     }
 
+    function selectImage(sport) {
+        if (sport === "Basketball") {
+            return image1;
+        } else if (sport === "Football") {
+            return image2;
+        } else if (sport === "Soccer") {
+            return image3;
+        } else if (sport === "Pickleball") {
+            return image4;
+        } else if (sport === "Volleyball") {
+            return image5;
+        }
+    }
+
+    function playersListLength() {
+        if (group.people_list) {
+
+            return group.people_list.split(',').length;
+        }
+    }
+
+    useEffect(() => {
+        if (group) {
+            setImage(selectImage(group.sport));
+        }
+    }, [group]);
+
     function handleLoading() {
         if (userDetails) {
             return (
-                <div> 
-                    <div>
-                        <h1>{group.sport}</h1>
-                        <p>{userDetails.username}</p>
-                        <p>{group.location}</p>
-                        <p>{group.time}</p>
-                        <p>{group.date}</p>
-                        <p>{group.skill_level}</p>
-                        <p>{group.people_needed}</p>
+                <div className='group-page-container'> 
+                    <div className='group-page-section'>
+                        <img className='group-page-image' src={image} alt='sport' />
                     </div>
-                    <div>
-                        <h2>Players</h2>
-                        {handlePlayers()}
-                    </div>
-                    <div>
-                        {handleJoinButton()}
+                    <div className='group-page-section'>
+                        <h1 className='group-page-header'>{group.sport}</h1>
+                        <p className='group-page-text'><span className='group-page-text-title'>Owner:</span> {userDetails.username}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>Address:</span> {group.location}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>Time:</span> {group.time}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>Date:</span> {group.date}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>Skill Level:</span> {group.skill_level}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>People needed:</span> {playersListLength}</p>
+                        <div className='group-page-players-section'>
+                            <h2 className='group-page-players-header'>Players</h2>
+                            {handlePlayers()}
+                        </div>
+                        <div className='group-page-join-button'>
+                            {handleJoinButton()}
+                        </div>
                     </div>
                 </div>
             )
         } else {
             return (
-                <div>
-                    <h2>Loading...</h2>
+                <div className='group-page-loading-'>
+                    <h2 className='group-page-loading-message'>Loading...</h2>
                 </div>
             )
         }

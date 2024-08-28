@@ -1,4 +1,4 @@
-/* Base styles */
+/* Base styles for the card container */
 .card-container {
     display: flex;
     flex-direction: column;
@@ -7,18 +7,18 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin: 20px;
-    max-width: 400px;
-    max-height: 475px;
+    max-width: 100%;
     background-color: #fff;
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.groupcard-buttons-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 16px;
-    border-top: 1px solid #ddd;
+/* Hover effect for card container */
+.card-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
+/* Image container styling */
 .card-image-container {
     width: 100%;
     height: 200px;
@@ -31,6 +31,7 @@
     object-fit: cover;
 }
 
+/* Content styling */
 .card-content {
     padding: 16px;
 }
@@ -52,11 +53,33 @@
     color: #000;
 }
 
-/* Styles for screens larger than 1200px */
+/* Group Join Message Styles */
+.groupcard-join-message {
+    color: #4CAF50; /* Green color to indicate success */
+    font-weight: bold;
+    font-size: 14px;
+    margin: 8px 0;
+    padding: 8px 0;
+    text-align: center;
+    background-color: #e8f5e9; /* Light green background */
+    border-radius: 4px;
+}
+
+/* Button container styling */
+.groupcard-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    border-top: 1px solid #ddd;
+    background-color: #fafafa;
+}
+
+/* Adjustments for larger screens */
 @media (min-width: 1200px) {
     .card-container {
-        margin: 30px;
         max-width: 450px;
+        margin: 30px auto;
     }
     .card-content {
         padding: 20px;
@@ -67,13 +90,17 @@
     .card-content p {
         font-size: 18px;
     }
+    .groupcard-join-message {
+        font-size: 16px;
+        padding: 10px 0;
+    }
 }
 
-/* Styles for screens between 768px and 1199px */
+/* Adjustments for medium screens */
 @media (min-width: 768px) and (max-width: 1199px) {
     .card-container {
-        margin: 25px;
         max-width: 90%;
+        margin: 25px auto;
     }
     .card-content {
         padding: 18px;
@@ -84,13 +111,15 @@
     .card-content p {
         font-size: 16px;
     }
+    .groupcard-join-message {
+        font-size: 15px;
+    }
 }
 
-/* Styles for screens between 480px and 767px */
+/* Adjustments for small screens */
 @media (min-width: 480px) and (max-width: 767px) {
     .card-container {
-        margin: 20px;
-        max-width: 100%;
+        margin: 20px auto;
     }
     .card-content {
         padding: 16px;
@@ -101,13 +130,15 @@
     .card-content p {
         font-size: 14px;
     }
+    .groupcard-join-message {
+        font-size: 13px;
+    }
 }
 
-/* Styles for screens smaller than 480px */
+/* Adjustments for the smallest screens */
 @media (max-width: 479px) {
     .card-container {
-        margin: 15px;
-        max-width: 100%;
+        margin: 15px auto;
     }
     .card-content {
         padding: 14px;
@@ -116,6 +147,9 @@
         font-size: 18px;
     }
     .card-content p {
+        font-size: 12px;
+    }
+    .groupcard-join-message {
         font-size: 12px;
     }
 }

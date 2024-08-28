@@ -7,7 +7,7 @@ import image3 from '../../images/Soccer.jpg';
 import image4 from '../../images/pickleball.jpg';
 import image5 from '../../images/Volleyball.jpg';
 import '../../Styles/groups.css';
-
+import axios from 'axios';
 import Button from '@mui/material/Button';
 import { ThemeProvider } from "@mui/material";
 import { Stack } from "@mui/material";
@@ -26,6 +26,22 @@ export default function Groups({ user, theme }) {
         people: "",
         user_id: user,
     });
+    const [userDetails, setUserDetails] = useState(null);
+
+    useEffect(() => {
+        axios.get(`https://flatiron-sports-project-api.onrender.com/user/${user}`, 
+        { headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+        } }
+        )
+        .then(response => {
+            setUserDetails(response.data);
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }, [user]);
 
     function selectImage(sport) {
         if (sport === "Basketball") {
@@ -109,11 +125,13 @@ export default function Groups({ user, theme }) {
             return <h2>No groups available</h2>;
         }
         return groups.map((group) => {
+            console.log(group)
             return <Groupcard 
             image={selectImage(group.sport)}
             timeBefore={timeBefore} 
             key={group.id}
-            id={group.id} 
+            id={group.id}
+            people_list={group.people_list} 
             sport={group.sport} 
             location={group.location}
             time={group.time}
@@ -121,6 +139,7 @@ export default function Groups({ user, theme }) {
             skill={group.skill_level}
             people={group.people_needed}
             user={group.user_id}
+            userDetails={userDetails}
             theme={theme}
             />;
         });
