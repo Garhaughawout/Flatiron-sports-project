@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Groupcard from "./groupcard";
 import image1 from '../../images/Basketball.jpg';
 import image2 from '../../images/Football.webp';
@@ -11,12 +10,14 @@ import axios from 'axios';
 import Button from '@mui/material/Button';
 import { ThemeProvider } from "@mui/material";
 import { Stack } from "@mui/material";
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
 
 
-
-export default function Groups({ user, theme }) {
+export default function Groups({ theme }) {
     const [groups, setGroups] = useState([]);
     const [timeBefore, setTimeBefore] = useState("");
+    const user = localStorage.getItem('uid');
     const [formInformation, setFormInformation] = useState({
         sport: "",
         location: "",
@@ -27,6 +28,9 @@ export default function Groups({ user, theme }) {
         user_id: user,
     });
     const [userDetails, setUserDetails] = useState(null);
+    const [open, setOpen] = useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     useEffect(() => {
         axios.get(`https://flatiron-sports-project-api.onrender.com/user/${user}`, 
@@ -44,16 +48,13 @@ export default function Groups({ user, theme }) {
     }, [user]);
 
     function selectImage(sport) {
-        if (sport === "Basketball") {
-            return image1;
-        } else if (sport === "Football") {
-            return image2;
-        } else if (sport === "Soccer") {
-            return image3;
-        } else if (sport === "Pickleball") {
-            return image4;
-        } else if (sport === "Volleyball") {
-            return image5;
+        switch(sport) {
+            case "Basketball": return image1;
+            case "Football": return image2;
+            case "Soccer": return image3;
+            case "Pickleball": return image4;
+            case "Volleyball": return image5;
+            default: return null;
         }
     }
 
@@ -83,32 +84,20 @@ export default function Groups({ user, theme }) {
                 console.log(data);
                 setGroups([...groups, data]);
             });
-            window.location.reload();
             alert("Group Created!");
     }
 
-
     function handleTime(e) {
-        var time = e.target.value;
+        const time = e.target.value;
         setTimeBefore(time);
-        var timeArray = time.split(':');
-        var hours = timeArray[0];
-        var minutes = timeArray[1];
+        let [hours, minutes] = time.split(':');
         if (hours > 12) {
             hours = hours - 12;
-            if (hours >= 10) {
-            time = hours + ":" + minutes;
-            } else {
-            time = "0" + hours + ":" + minutes;
-            }
-        } else if (hours === 12) {
-            time = hours + ":" + minutes;
-        } else {
-            time = hours + ":" + minutes;
+            hours = hours < 10 ? "0" + hours : hours;
         }
         setFormInformation({
             ...formInformation,
-            time: time,
+            time: `${hours}:${minutes}`,
         });
     }
 
@@ -147,55 +136,90 @@ export default function Groups({ user, theme }) {
     return (
     <div className="container">
         <div className="groups-container">
+            <ThemeProvider theme={theme}>
+                <Button onClick={handleOpen} variant="contained" style={{
+                    backgroundColor: theme.palette.primary.main,
+                    color: theme.palette.primary.contrastText,
+                    width: "100%",
+                }}>
+                    Create a Group
+                </Button>
+            </ThemeProvider>
             {renderGroups()}
         </div>
-        <div className="group-form-container">
-        <h2>Create a Group</h2>
-        <form className="group-form">
-            <label className="group-form-input">
-                Sport:
-                <select name="sport" value={formInformation.sport} onChange={editFormInformation} className="input-button">
-                    <option value="">Select a sport</option>
-                    <option value="Basketball">Basketball</option>
-                    <option value="Football">Football</option>
-                    <option value="Soccer">Soccer</option>
-                    <option value="Pickleball">Pickleball</option>
-                    <option value="Volleyball">Volleyball</option>
-                </select>
-            </label>
-            <label className="group-form-input">
-                Location:
-                <input type="text" name="location" value={formInformation.location} onChange={editFormInformation} className="input-button" placeholder="Enter the location..." />
-            </label>
-            <label className="group-form-input">
-                Time:
-                <input type="time" name="time" value={formInformation.time} onChange={handleTime} className="input-button" placeholder="Enter the time playing..." />
-            </label>
-            <label className="group-form-input">
-                Date:
-                <input type="date" name="date" value={formInformation.date} onChange={editFormInformation} className="input-button" placeholder="Enter the date playing..." />
-            </label>
-            <label className="group-form-input">
-                Skill Level:
-                <select name="skill" value={formInformation.skill} onChange={editFormInformation} className="input-button">
-                    <option value="">Select a skill level</option>
-                    <option value="Beginner">Beginner</option>
-                    <option value="Intermediate">Intermediate</option>
-                    <option value="Advanced">Advanced</option>
-                </select>
-            </label>
-            <label className="group-form-input">
-                People Needed:
-                <input type="number" name="people" value={formInformation.people} onChange={editFormInformation} className="input-button" placeholder="Enter the people needed..." />
-            </label>
-            <ThemeProvider theme={theme}>
-                <Stack direction="row" spacing={2}>
-                <Button onClick={handleSubmit} variant="contained">Create Group</Button>
-                </Stack>
-            </ThemeProvider>
-        </form>
+        <Modal
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-title"
+            aria-describedby="modal-description"
+        >
+            <Box className="modal-box" sx={{
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                width: {
+                    xs: '90%', // 90% of the screen width on extra-small devices
+                    sm: 400,  // 400px width on small devices and up
+                    md: 500,  // 500px width on medium devices and up
+                    lg: 600,  // 600px width on large devices and up
+                },
+                bgcolor: 'background.paper',
+                borderRadius: 5,
+                border: '1px solid #000',
+                boxShadow: 24,
+                p: {
+                    xs: 2,  // Smaller padding on extra-small devices
+                    sm: 3,  // Default padding on small devices and up
+                    md: 4,  // Increased padding on medium devices and up
+                },
+            }}>
+                <h2 id="modal-title">Create a Group</h2>
+                <form className="group-form">
+                    <label className="group-form-input">
+                        Sport:
+                        <select name="sport" value={formInformation.sport} onChange={editFormInformation} className="input-button">
+                            <option value="">Select a sport</option>
+                            <option value="Basketball">Basketball</option>
+                            <option value="Football">Football</option>
+                            <option value="Soccer">Soccer</option>
+                            <option value="Pickleball">Pickleball</option>
+                            <option value="Volleyball">Volleyball</option>
+                        </select>
+                    </label>
+                    <label className="group-form-input">
+                        Location:
+                        <input type="text" name="location" value={formInformation.location} onChange={editFormInformation} className="input-button" placeholder="Enter the location..." />
+                    </label>
+                    <label className="group-form-input">
+                        Time:
+                        <input type="time" name="time" value={formInformation.time} onChange={handleTime} className="input-button" placeholder="Enter the time playing..." />
+                    </label>
+                    <label className="group-form-input">
+                        Date:
+                        <input type="date" name="date" value={formInformation.date} onChange={editFormInformation} className="input-button" placeholder="Enter the date playing..." />
+                    </label>
+                    <label className="group-form-input">
+                        Skill Level:
+                        <select name="skill" value={formInformation.skill} onChange={editFormInformation} className="input-button">
+                            <option value="">Select a skill level</option>
+                            <option value="Beginner">Beginner</option>
+                            <option value="Intermediate">Intermediate</option>
+                            <option value="Advanced">Advanced</option>
+                        </select>
+                    </label>
+                    <label className="group-form-input">
+                        People Needed:
+                        <input type="number" name="people" value={formInformation.people} onChange={editFormInformation} className="input-button" placeholder="Enter the people needed..." />
+                    </label>
+                    <ThemeProvider theme={theme}>
+                        <Stack direction="row" spacing={2}>
+                            <Button onClick={handleSubmit} variant="contained">Create Group</Button>
+                        </Stack>
+                    </ThemeProvider>
+                </form>
+            </Box>
+        </Modal>
     </div>
-    </div>
-
     )
 }

@@ -113,8 +113,10 @@ def create_group():
     time = request_data.get('time')
     people_needed = request_data.get('people')
     user_id = request_data.get('user_id')
+    user = User.query.get(user_id)
+    people_list = user.username
     
-    group = Group(sport=sport, location=location, skill_level=skill_level, date=date, time=time, people_needed=people_needed, user_id=user_id)
+    group = Group(sport=sport, location=location, skill_level=skill_level, date=date, time=time, people_needed=people_needed, user_id=user_id, people_list=people_list)
     
     db.session.add(group)
     db.session.commit()

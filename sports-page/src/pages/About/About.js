@@ -36,7 +36,7 @@ export default function About() {
                 <p>Don't miss out on the opportunity to be part of our vibrant sports community. Join Get Up today and take the first step toward discovering new friendships, exploring exciting sports activities, and making memories that will last a lifetime.</p>
             </div>
             <div className="aboutpage-buttons">
-                <button className="homepage-button"><Link to="/groups" className="homepage-link">Find Groups</Link></button>
+                <Link to="/groups" className="homepage-link"><button className="homepage-button">Find Groups</button></Link>
             </div>
         </div>
     );

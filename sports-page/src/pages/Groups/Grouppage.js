@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Header from '../Basics/Header';
 import image1 from '../../images/Basketball.jpg';
 import image2 from '../../images/Football.webp';
 import image3 from '../../images/Soccer.jpg';
@@ -9,13 +8,16 @@ import image4 from '../../images/pickleball.jpg';
 import image5 from '../../images/Volleyball.jpg';
 import '../../Styles/Grouppage.css';
 
-export default function GroupPage({user}) {
+export default function GroupPage() {
     const { id } = useParams();
     const [group, setGroup] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
     const [joined, setJoined] = useState(false);
     const [image, setImage] = useState(null);
+    const [playerCount, setPlayerCount] = useState(0);
+    const user = localStorage.getItem('uid');
 
+    //Function to get the group details
     useEffect(() => {
         axios.get(`https://flatiron-sports-project-api.onrender.com/group/${id}`)
         .then(response => {
@@ -24,8 +26,9 @@ export default function GroupPage({user}) {
         .catch((error) => {
             console.error('Error:', error);
         });
-    }, []);
+    }, [id]);
 
+    //Function to get the user details for the group
     useEffect(() => {
         axios.get(`https://flatiron-sports-project-api.onrender.com/user/${user}`, 
         { headers: {
@@ -41,6 +44,7 @@ export default function GroupPage({user}) {
         });
     }, [user]);
 
+    //Function to handle the players in the group and display them
     function handlePlayers() {
         if (group.people_list) {
             return (
@@ -55,8 +59,9 @@ export default function GroupPage({user}) {
         }
     }
 
+    //Function to handle the join button and add or remove the user from the group
     function handleJoin() {
-        if (joined == false) {
+        if (joined === false) {
             axios.post(`https://flatiron-sports-project-api.onrender.com/group/${id}`, {
                 people_list: userDetails.first_name + ' ' + userDetails.last_name
             })
@@ -85,6 +90,7 @@ export default function GroupPage({user}) {
         
     }
 
+    //Function to handle the join button returned based on if the user is in the group or not
     function handleJoinButton() {
         if (group.people_list) {
             if (group.people_list.split(',').includes(userDetails.first_name + ' ' + userDetails.last_name)) {
@@ -99,6 +105,7 @@ export default function GroupPage({user}) {
         }
     }
 
+    //Function to select the image
     function selectImage(sport) {
         if (sport === "Basketball") {
             return image1;
@@ -113,21 +120,19 @@ export default function GroupPage({user}) {
         }
     }
 
-    function playersListLength() {
-        if (group.people_list) {
-            console.log()
-            return group.people_list.split(',').length + '/' + group.people_needed;
-        }
-    }
-
+    //Function to set the image
     useEffect(() => {
         if (group) {
             setImage(selectImage(group.sport));
         }
     }, [group]);
 
+    //Function to handle the loading of the page based on if the user is logged in or not
     function handleLoading() {
         if (userDetails && group) {
+            if (playerCount === 0) {
+                setPlayerCount(group.people_list.split(',').length);
+            }
             return (
                 <div className='group-page-container'> 
                     <div className='group-page-section'>
@@ -144,7 +149,7 @@ export default function GroupPage({user}) {
                             <h2 className='group-page-players-header'>Players</h2>
                             {handlePlayers()}
                         </div>
-                        <p className='group-page-text'><span className='group-page-text-title'>People needed:</span> {playersListLength()}</p>
+                        <p className='group-page-text'><span className='group-page-text-title'>People needed:</span> {`${playerCount}/${group.people_needed}`}</p>
                         <div className='group-page-join-button'>
                             {handleJoinButton()}
                         </div>
