@@ -47,7 +47,9 @@ def login():
         refresh_token = create_refresh_token(identity=user.uid)
         session['user_id'] = user.uid
         user = User.query.filter_by(username=username).first()
-        return jsonify({'access_token': access_token}, {'username': user.username, 'email': user.email, 'uid': user.uid, 'password': user.password}, {'refresh_token': refresh_token})
+        return jsonify({'access_token': access_token}, 
+                       {'username': user.username, 'email': user.email, 'uid': user.uid, 'password': user.password}, 
+                       {'refresh_token': refresh_token} )
     else:
         return jsonify({'message': 'Invalid credentials'}), 401
     

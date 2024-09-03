@@ -17,6 +17,7 @@ function Login( {onLogin, setAuth} ) {
             username,
             password,
         });
+        console.log(response.data);
         localStorage.setItem("access_token", response.data[0].access_token);
         localStorage.setItem("refresh_token", response.data[2].refresh_token);
         localStorage.setItem('uid', response.data[1]['uid']);

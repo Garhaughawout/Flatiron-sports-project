@@ -10,9 +10,11 @@ import '../../Styles/home.css';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { ThemeProvider, Stack } from "@mui/material";
+import { Navigate } from "react-router-dom";
 
 
 export default function Home({ theme }) {
+    
     return (
         <div>
             <div className="image-carousel">
@@ -31,10 +33,10 @@ export default function Home({ theme }) {
             <div className="homepage-buttons">
                 <ThemeProvider theme={theme}>
                     <Stack direction="row" spacing={2}>
-                        <Link to="/about">
+                        <Link to="/about" style={{textDecoration: 'none'}}>
                             <Button variant="contained">Learn More</Button>
                         </Link>
-                        <Link to="/signup">
+                        <Link to="/signup" style={{textDecoration: 'none'}}>
                             <Button variant="contained">Find Groups</Button>
                         </Link>
                     </Stack>

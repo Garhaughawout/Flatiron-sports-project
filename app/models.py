@@ -10,6 +10,16 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
 
+
+    def to_dict(self):
+        return {
+            'uid': self.uid,
+            'username': self.username,
+            'email': self.email,
+            'first_name': self.first_name,
+            'last_name': self.last_name
+        }
+
     def __init__(self, username, password, email, first_name, last_name):
         self.username = username
         self.password = password

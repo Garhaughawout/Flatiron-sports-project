@@ -13,7 +13,6 @@ export default function GroupPage({user}) {
     const { id } = useParams();
     const [group, setGroup] = useState(null);
     const [userDetails, setUserDetails] = useState(null);
-    const [groupPlayers, setGroupPlayers] = useState(null);
     const [joined, setJoined] = useState(false);
     const [image, setImage] = useState(null);
 
@@ -116,8 +115,8 @@ export default function GroupPage({user}) {
 
     function playersListLength() {
         if (group.people_list) {
-
-            return group.people_list.split(',').length;
+            console.log()
+            return group.people_list.split(',').length + '/' + group.people_needed;
         }
     }
 
@@ -128,7 +127,7 @@ export default function GroupPage({user}) {
     }, [group]);
 
     function handleLoading() {
-        if (userDetails) {
+        if (userDetails && group) {
             return (
                 <div className='group-page-container'> 
                     <div className='group-page-section'>
@@ -141,11 +140,11 @@ export default function GroupPage({user}) {
                         <p className='group-page-text'><span className='group-page-text-title'>Time:</span> {group.time}</p>
                         <p className='group-page-text'><span className='group-page-text-title'>Date:</span> {group.date}</p>
                         <p className='group-page-text'><span className='group-page-text-title'>Skill Level:</span> {group.skill_level}</p>
-                        <p className='group-page-text'><span className='group-page-text-title'>People needed:</span> {playersListLength}</p>
                         <div className='group-page-players-section'>
                             <h2 className='group-page-players-header'>Players</h2>
                             {handlePlayers()}
                         </div>
+                        <p className='group-page-text'><span className='group-page-text-title'>People needed:</span> {playersListLength()}</p>
                         <div className='group-page-join-button'>
                             {handleJoinButton()}
                         </div>
@@ -155,14 +154,14 @@ export default function GroupPage({user}) {
         } else {
             return (
                 <div className='group-page-loading-'>
-                    <h2 className='group-page-loading-message'>Loading...</h2>
+                    <h2 className='group-page-loading-message'>Please Login to View This Page</h2>
                 </div>
             )
         }
     }
 
     return (
-        <div> 
+        <div className='group-page'> 
             {handleLoading()}
         </div>
     )

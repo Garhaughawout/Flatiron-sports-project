@@ -125,7 +125,6 @@ export default function Groups({ user, theme }) {
             return <h2>No groups available</h2>;
         }
         return groups.map((group) => {
-            console.log(group)
             return <Groupcard 
             image={selectImage(group.sport)}
             timeBefore={timeBefore} 
