@@ -9,25 +9,10 @@
 .groups-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 18px;
     flex: 2;
-}
-
-.group-form-container {
-    flex: 1;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.group-form-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-    text-align: center;
-}
+    width: 100%;
+}   
 
 .group-form {
     display: flex;
@@ -52,28 +37,6 @@
     font-size: 14px;
     color: #333;
     transition: border-color 0.3s;
-}
-
-.input-button:focus {
-    border-color: #4CAF50;
-    outline: none;
-}
-
-.group-form-submit {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    background-color: #333;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 10px;
-    align-self: center;
-    transition: background-color 0.3s;
-}
-
-.group-form-submit:hover {
-    background-color: #555;
 }
 
 /* Styles for screens larger than 1200px */

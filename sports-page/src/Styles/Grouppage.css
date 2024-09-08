@@ -1,12 +1,11 @@
-/* General GroupPage Styling */
 .group-page-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    background-color: white; /* Changed to white */
-    color: #2e3944; /* Match header text color */
+    background-color: white;
+    color: #2e3944;
     padding: 20px;
-    border-radius: 10px; /* Optional: to give a slightly rounded look */
+    border-radius: 10px;
     min-height: 825px;
 }
 
@@ -25,13 +24,13 @@
 .group-page-header {
     font-size: 28px;
     font-weight: bold;
-    color: #2e3944; /* Match header text color */
+    color: #2e3944;
     margin-bottom: 10px;
 }
 
 .group-page-text {
     font-size: 18px;
-    color: #2e3944; /* Match header text color */
+    color: #2e3944;
     margin: 5px 0;
 }
 
@@ -46,7 +45,7 @@
 .group-page-players-header {
     font-size: 24px;
     font-weight: bold;
-    color: #2e3944; /* Match header text color */
+    color: #2e3944;
     margin-bottom: 10px;
 }
 
@@ -59,7 +58,7 @@
     font-size: 18px;
     margin-bottom: 5px;
     padding: 8px;
-    background-color: #f0f0f0; /* Light grey for player items */
+    background-color: #f0f0f0;
     border-radius: 5px;
 }
 
@@ -70,7 +69,7 @@
 }
 
 .group-page-join-button button {
-    background-color: #2e3944; /* Match header background color */
+    background-color: #2e3944;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -81,18 +80,17 @@
 }
 
 .group-page-join-button button:hover {
-    background-color: #1f2a35; /* Darken on hover */
+    background-color: #1f2a35;
 }
 
-/* Loading State */
 .group-page-loading-message {
     text-align: center;
     font-size: 24px;
-    color: #2e3944; /* Match header text color */
+    color: #2e3944;
     margin-top: 50px;
+    min-height: 600px;
 }
 
-/* Responsive Styling */
 @media (max-width: 768px) {
     .group-page-container {
         flex-direction: column;

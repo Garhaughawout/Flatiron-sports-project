@@ -114,7 +114,7 @@ def create_group():
     people_needed = request_data.get('people')
     user_id = request_data.get('user_id')
     user = User.query.get(user_id)
-    people_list = user.username
+    people_list = user.first_name + ' ' + user.last_name
     
     group = Group(sport=sport, location=location, skill_level=skill_level, date=date, time=time, people_needed=people_needed, user_id=user_id, people_list=people_list)
     

@@ -36,7 +36,7 @@ export default function Home({ theme }) {
                         <Link to="/about" style={{textDecoration: 'none'}}>
                             <Button variant="contained">Learn More</Button>
                         </Link>
-                        <Link to="/signup" style={{textDecoration: 'none'}}>
+                        <Link to="/groups" style={{textDecoration: 'none'}}>
                             <Button variant="contained">Find Groups</Button>
                         </Link>
                     </Stack>

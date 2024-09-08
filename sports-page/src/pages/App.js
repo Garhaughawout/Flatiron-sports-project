@@ -1,6 +1,5 @@
 import '../Styles/App.css';
 import React from 'react';
-import axios from 'axios';
 import {useState, useEffect} from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Route, Routes } from 'react-router-dom';
@@ -45,8 +44,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home theme={theme}/>} />
                 <Route path="/about" element={<About />} />
-                <Route path="/login" element={user !== null ? <Navigate to='/'/>:<Login onLogin={setUser} user={user} setAuth={setAuth} auth={auth}/>} />
-                <Route path="/profile" element={user === null ? <Navigate to='/login'/> : <Profile user={user}/>} />
+                <Route path="/login" element={user !== null ? <Navigate to='/'/> : <Login onLogin={setUser} user={user} setAuth={setAuth} auth={auth}/>} />
+                <Route path="/profile" element={user === null ? <Navigate to='/login'/> : <Profile user={user} theme={theme}/>} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/groups" element={<Groups user={user} theme={theme}/>} />
                 <Route path="/group/:id" element={<GroupPage user={user}/>} />

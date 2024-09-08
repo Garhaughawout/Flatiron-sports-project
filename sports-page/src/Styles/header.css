@@ -23,7 +23,7 @@
 .header-name {
     font-size: 24px;
     font-weight: bold;
-    color: white; /* Ensure text color matches the footer */
+    color: white;
 }
 
 .link-button-container {
@@ -38,11 +38,15 @@
 .link-button-logout {
     margin-left: 20px;
     text-decoration: none;
-    color: white; /* Match footer link color */
+    color: white;
     font-size: 18px;
     border: none;
     background: none;
     cursor: pointer;
+}
+
+.link-button:hover {
+    text-decoration: underline;
 }
 
 .link-button-logout:hover {

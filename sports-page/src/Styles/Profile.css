@@ -1,0 +1,101 @@
+/* Profile Container */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.profile-name {
+    font-size: 24px;
+    color: #333;
+    margin: 0;
+}
+
+.profile-email {
+    font-size: 18px;
+    color: #777;
+    margin: 5px 0;
+}
+
+/* User Groups Section */
+.profile-usergroups-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.profile-usergroups-title {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.profile-usergroups-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Responsive Styles */
+@media (min-width: 1200px) {
+    .profile-container {
+        padding: 30px;
+    }
+
+    .profile-name {
+        font-size: 28px;
+    }
+
+    .profile-email {
+        font-size: 20px;
+    }
+
+    .profile-usergroups-title {
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+    .profile-container {
+        padding: 25px;
+    }
+
+    .profile-name {
+        font-size: 26px;
+    }
+
+    .profile-email {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 767px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-name {
+        font-size: 22px;
+    }
+
+    .profile-email {
+        font-size: 16px;
+    }
+
+    .profile-usergroups-title {
+        font-size: 20px;
+    }
+}

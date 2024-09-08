@@ -25,7 +25,8 @@ export default function Signup() {
         })
         .then(response => response.json())
         .then(data => {
-            alert(data.message);
+            console.log('Success:', data);
+            window.location.href = '/login';
         })
         .catch(error => console.error('Error:', error));
     }

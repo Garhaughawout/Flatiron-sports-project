@@ -1,11 +1,16 @@
 // Code to display the user's profile information
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import image1 from '../../images/Basketball.jpg';
+import image2 from '../../images/Football.webp';
+import image3 from '../../images/Soccer.jpg';
+import image4 from '../../images/pickleball.jpg';
+import image5 from '../../images/Volleyball.jpg';
 import '../../Styles/Profile.css'; 
 import Groupcard from '../Groups/groupcard';
 
 
-const Profile = () => {
+export default function Profile({theme}) {
     const user = localStorage.getItem('uid');
     const [userDetails, setUserDetails] = useState({});
     const [groups, setGroups] = useState([]);
@@ -37,14 +42,37 @@ const Profile = () => {
         });
     }, []);
 
-    function handleGroups() {
-        for (let i = 0; i < groups.length; i++) {
-            if (groups[i].user_id === user) {
-                return (
-                    console.log(groups[i])
-                )
-            }
+    function selectImage(sport) {
+        switch(sport) {
+            case "Basketball": return image1;
+            case "Football": return image2;
+            case "Soccer": return image3;
+            case "Pickleball": return image4;
+            case "Volleyball": return image5;
+            default: return null;
         }
+    }
+
+
+    function handleGroups() {
+        return groups.map((group) => {
+            return <Groupcard 
+            image={selectImage(group.sport)}
+            timeBefore={group.time}
+            key={group.id}
+            id={group.id}
+            people_list={group.people_list} 
+            sport={group.sport} 
+            location={group.location}
+            time={group.time}
+            date={group.date}
+            skill={group.skill_level}
+            people={group.people_needed}
+            user={group.user_id}
+            userDetails={userDetails}
+            theme={theme}
+            />;
+        });
     }
 
     function handleLoading() {
@@ -56,10 +84,10 @@ const Profile = () => {
                         <p className='profile-email'>{userDetails.email}</p>
                     </div>
                     <div className='profile-usergroups-container'>
-                        {/* <h3 className='profile-usergroups-title'>Your Groups</h3>
+                        <h3 className='profile-usergroups-title'>Your Groups</h3>
                         <ul className='profile-usergroups-list'>
                             {handleGroups()}
-                        </ul> */}
+                        </ul>
                     </div>
                 </div>
             )
@@ -81,5 +109,3 @@ const Profile = () => {
     </div>
   );
 };
-
-export default Profile;

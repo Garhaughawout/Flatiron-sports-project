@@ -47,6 +47,14 @@ export default function Groups({ theme }) {
         });
     }, [user]);
 
+    useEffect(() => {
+        fetch("https://flatiron-sports-project-api.onrender.com/groups")
+            .then((res) => res.json())
+            .then((data) => {
+                setGroups(data);
+            });
+    }, []);
+
     function selectImage(sport) {
         switch(sport) {
             case "Basketball": return image1;
@@ -57,14 +65,6 @@ export default function Groups({ theme }) {
             default: return null;
         }
     }
-
-    useEffect(() => {
-        fetch("https://flatiron-sports-project-api.onrender.com/groups")
-            .then((res) => res.json())
-            .then((data) => {
-                setGroups(data);
-            });
-    }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -141,6 +141,15 @@ export default function Groups({ theme }) {
                     backgroundColor: theme.palette.primary.main,
                     color: theme.palette.primary.contrastText,
                     width: "100%",
+                    height: 50,
+                    margin: "10px 0",
+                    position: "sticky",
+                    top: 1,
+                    zIndex: 1,
+                    marginTop: 10,
+                    fontSize: 15,
+                    fontWeight: "bold",
+                    padding: 10,
                 }}>
                     Create a Group
                 </Button>
