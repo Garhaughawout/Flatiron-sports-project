@@ -8,6 +8,7 @@ export default function Signup() {
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
 
+    // Function to handle form submission and send data to the backend
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('https://flatiron-sports-project-api.onrender.com/signup', {

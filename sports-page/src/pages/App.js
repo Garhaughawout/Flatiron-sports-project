@@ -20,6 +20,7 @@ export default function App() {
     const [user, setUser] = useState(null);
     const [auth, setAuth] = useState(false);
 
+    // Check if user is logged in on page load
     useEffect(() => {
         if(localStorage.getItem('access_token')) {
             setUser(localStorage.getItem('uid'));

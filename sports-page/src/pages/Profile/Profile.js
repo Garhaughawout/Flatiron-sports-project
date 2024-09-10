@@ -15,6 +15,8 @@ export default function Profile({theme}) {
     const [userDetails, setUserDetails] = useState({});
     const [groups, setGroups] = useState([]);
 
+
+    // Fetch user details from the backend on page load
     useEffect(() => {
         fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
             method: 'GET',
@@ -32,6 +34,7 @@ export default function Profile({theme}) {
         });
     }, [user]);
 
+    /// Fetch groups from the backend on page load
     useEffect(() => {
         axios.get(`https://flatiron-sports-project-api.onrender.com/groups`)
         .then(response => {
@@ -42,6 +45,7 @@ export default function Profile({theme}) {
         });
     }, []);
 
+    // Function to select the correct image based on the sport of the group
     function selectImage(sport) {
         switch(sport) {
             case "Basketball": return image1;
@@ -53,7 +57,7 @@ export default function Profile({theme}) {
         }
     }
 
-
+    // Function to map over the groups and display them
     function handleGroups() {
         return groups.map((group) => {
             return <Groupcard 
@@ -75,6 +79,7 @@ export default function Profile({theme}) {
         });
     }
 
+    // Function to handle loading of the page and display the user's profile information and groups
     function handleLoading() {
         if (userDetails && groups) {
             return (

@@ -12,6 +12,7 @@ import axios from 'axios';
 export default function Groupcard({id, image, sport, location, time, date, skill, people, timeBefore, theme, user, people_list, userDetails}) {
     const [finalTime, setFinalTime] = useState("");
 
+    // Function to check if the user is in the group
     useEffect(() => {
         if (parseInt(timeBefore.split(":")[0]) > 12) {
             setFinalTime(time + ' ' + "PM");
@@ -22,6 +23,7 @@ export default function Groupcard({id, image, sport, location, time, date, skill
             }  
         }, []);
 
+    // Function to handle redirect to the group page
     function handleRedirect() {
         window.location.href = `/group/${id}`;
     }

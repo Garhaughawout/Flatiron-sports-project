@@ -32,6 +32,7 @@ export default function Groups({ theme }) {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
+    // Fetch user details from the backend on page load
     useEffect(() => {
         axios.get(`https://flatiron-sports-project-api.onrender.com/user/${user}`, 
         { headers: {
@@ -47,6 +48,7 @@ export default function Groups({ theme }) {
         });
     }, [user]);
 
+    // Fetch groups from the backend on page load
     useEffect(() => {
         fetch("https://flatiron-sports-project-api.onrender.com/groups")
             .then((res) => res.json())
@@ -55,6 +57,7 @@ export default function Groups({ theme }) {
             });
     }, []);
 
+    // Function to select the correct image based on the sport of the group
     function selectImage(sport) {
         switch(sport) {
             case "Basketball": return image1;
@@ -66,6 +69,7 @@ export default function Groups({ theme }) {
         }
     }
 
+    // Function to handle the form submission and create a new group
     function handleSubmit(e) {
         e.preventDefault();
         if (formInformation.sport === "" || formInformation.location === "" || formInformation.time === "" || formInformation.date === "" || formInformation.skill === "" || formInformation.people === "") {
@@ -87,6 +91,7 @@ export default function Groups({ theme }) {
             alert("Group Created!");
     }
 
+    // Function to handle the time input and convert it to 12 hour format
     function handleTime(e) {
         const time = e.target.value;
         setTimeBefore(time);
@@ -101,6 +106,7 @@ export default function Groups({ theme }) {
         });
     }
 
+    // Function to edit the form information
     function editFormInformation(e) {
         setFormInformation({
             ...formInformation,
@@ -109,6 +115,7 @@ export default function Groups({ theme }) {
         });
     }
 
+    // Function to render the groups
     function renderGroups() {
         if (groups.length === 0) {
             return <h2>No groups available</h2>;
