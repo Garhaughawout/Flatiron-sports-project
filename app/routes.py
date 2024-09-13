@@ -83,19 +83,19 @@ def get_group(id):
     elif request.method == 'POST':
         group = Group.query.get(id)
         request_data = request.get_json()
-        people_list = request_data.get('people_list')
+        full_name = request_data.get('full_name')
         group_list = group.people_list.split(',')
 
-        for person in group_list:
-            if person == people_list:
-                group_list.remove(person)
-                group.people_list = ','.join(group_list)
-                db.session.commit()
-                return jsonify({'message': 'Person removed from the Group'})   
-        else:
-            group.people_list = group.people_list + ',' + people_list
+        
+        if full_name in group_list:
+            group_list.remove(full_name)
+            group.people_list = ','.join(group_list)
             db.session.commit()
-            return jsonify({'message': 'Group updated'})
+            return jsonify({'message': 'Person removed from the Group'}) 
+        else:
+            group.people_list = group.people_list + ',' + full_name
+            db.session.commit()
+            return jsonify({'message': 'Person Added to the Group'})
     else: 
         group = Group.query.get(id)
         if group:

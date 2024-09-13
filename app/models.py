@@ -1,4 +1,5 @@
 from config import db
+from sqlalchemy.orm import relationship, validates
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -10,6 +11,7 @@ class User(db.Model):
     last_name = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(100), unique=True, nullable=False)
 
+    
 
     def to_dict(self):
         return {
