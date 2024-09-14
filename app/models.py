@@ -5,37 +5,37 @@ class User(db.Model):
     __tablename__ = 'users'
     
     uid = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
+    username = db.Column(db.String(50), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(50), nullable=True)
     last_name = db.Column(db.String(50), nullable=True)
     email = db.Column(db.String(100), nullable=False)
 
-    @validates('username')
-    def validate_username(self, username, key):
-        if not username:
-            raise AssertionError('No username provided')
-        if User.query.filter(User.username == username).first():
-            raise AssertionError('Username is already in use')
-        if len(username) < 5:
-            raise AssertionError('Username must be at least 5 characters')
-        return username
+    # @validates('username')
+    # def validate_username(self, username, key):
+    #     if not username:
+    #         raise AssertionError('No username provided')
+    #     if User.query.filter(User.username == username).first():
+    #         raise AssertionError('Username is already in use')
+    #     if len(username) < 5:
+    #         raise AssertionError('Username must be at least 5 characters')
+    #     return 
     
-    @validates('email')
-    def validate_email(self, email, key):
-        if not email:
-            raise AssertionError('No email provided')
-        if User.query.filter(User.email == email).first():
-            raise AssertionError('Email is already in use')
-        return email
+    # @validates('email')
+    # def validate_email(self, email, key):
+    #     if not email:
+    #         raise AssertionError('No email provided')
+    #     if User.query.filter(User.email == email).first():
+    #         raise AssertionError('Email is already in use')
+    #     return self.email
     
-    @validates('password')
-    def validate_password(self, password, key):
-        if not password:
-            raise AssertionError('No password provided')
-        if len(password) < 5:
-            raise AssertionError('Password must be at least 5 characters')
-        return password
+    # @validates('password')
+    # def validate_password(self, password, key):
+    #     if not password:
+    #         raise AssertionError('No password provided')
+    #     if len(password) < 5:
+    #         raise AssertionError('Password must be at least 5 characters')
+    #     return self.password
     
 
     # Will be working on validations for first_name and last_name
