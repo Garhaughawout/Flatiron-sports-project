@@ -9,9 +9,50 @@ class User(db.Model):
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(50), nullable=True)
     last_name = db.Column(db.String(50), nullable=True)
-    email = db.Column(db.String(100), unique=True, nullable=False)
+    email = db.Column(db.String(100), nullable=False)
 
+    @validates('username')
+    def validate_username(self, username, key):
+        if not username:
+            raise AssertionError('No username provided')
+        if User.query.filter(User.username == username).first():
+            raise AssertionError('Username is already in use')
+        if len(username) < 5:
+            raise AssertionError('Username must be at least 5 characters')
+        return username
     
+    @validates('email')
+    def validate_email(self, email, key):
+        if not email:
+            raise AssertionError('No email provided')
+        if User.query.filter(User.email == email).first():
+            raise AssertionError('Email is already in use')
+        return email
+    
+    @validates('password')
+    def validate_password(self, password, key):
+        if not password:
+            raise AssertionError('No password provided')
+        if len(password) < 5:
+            raise AssertionError('Password must be at least 5 characters')
+        return password
+    
+
+    # Will be working on validations for first_name and last_name
+
+    # @validates('first_name')
+    # def validate_first_name(self, first_name, key):
+    #     if (first_name.isalpha()):
+    #         return first_name
+    #     else: 
+    #         raise AssertionError('First name must be alphabetical characters')
+        
+    # @validates('last_name')
+    # def validate_last_name(self, last_name, key):
+    #     if (last_name.isalpha()):
+    #         return last_name
+    #     else: 
+    #         raise AssertionError('Last name must be alphabetical characters')
 
     def to_dict(self):
         return {

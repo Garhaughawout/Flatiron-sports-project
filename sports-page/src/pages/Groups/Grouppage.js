@@ -63,7 +63,7 @@ export default function GroupPage() {
     function handleJoin() {
         if (joined === false) {
             axios.post(`https://flatiron-sports-project-api.onrender.com/group/${id}`, {
-                people_list: userDetails.first_name + ' ' + userDetails.last_name,
+                full_name: userDetails.first_name + ' ' + userDetails.last_name,
                 id: user
             })
             .then(response => {
@@ -76,9 +76,8 @@ export default function GroupPage() {
         }
         else {
             axios.post(`https://flatiron-sports-project-api.onrender.com/group/${id}`, {
-                data: {
-                    people_list: userDetails.first_name + ' ' + userDetails.last_name
-                }
+                full_name: userDetails.first_name + ' ' + userDetails.last_name,
+                id: user
             })
             .then(response => {
                 setJoined(false);

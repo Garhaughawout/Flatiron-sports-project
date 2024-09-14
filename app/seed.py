@@ -13,7 +13,7 @@ if __name__ == '__main__':
             user1 = User(
                 username='garhaughawout',
                 password=bcrypt.generate_password_hash('password').decode('utf-8'),
-                email='garhaughawout123@gmail.com',
+                email='garhaughawout@gmail.com',
                 first_name='Garrett',
                 last_name='Haughawout'
                 )

@@ -1,5 +1,5 @@
 // Code to display the user's profile information
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect} from 'react';
 import axios from 'axios';
 import image1 from '../../images/Basketball.jpg';
 import image2 from '../../images/Football.webp';
@@ -18,7 +18,7 @@ export default function Profile({theme}) {
 
     // Fetch user details from the backend on page load
     useEffect(() => {
-        fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
+        fetch(`http://localhost:5000/user/${user}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -36,7 +36,7 @@ export default function Profile({theme}) {
 
     /// Fetch groups from the backend on page load
     useEffect(() => {
-        axios.get(`https://flatiron-sports-project-api.onrender.com/groups`)
+        axios.get(`http://localhost:5000/groups`)
         .then(response => {
             setGroups(response.data);
         })
@@ -59,7 +59,8 @@ export default function Profile({theme}) {
 
     // Function to map over the groups and display them
     function handleGroups() {
-        return groups.map((group) => {
+        const filteredGroups = groups.filter(group => group.people_list.split(',').includes(userDetails.first_name + ' ' + userDetails.last_name));
+        return filteredGroups.map((group) => {
             return <Groupcard 
             image={selectImage(group.sport)}
             timeBefore={group.time}

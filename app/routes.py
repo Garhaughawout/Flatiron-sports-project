@@ -14,7 +14,7 @@ def check_loggedin():
         return jsonify({'message': 'User is logged in'})
     else:
         return jsonify({'message': 'User is not logged in'})
-                
+
 @app.route('/signup', methods=['POST', 'GET'])
 def signup():
     if request.method == 'GET':
@@ -85,7 +85,6 @@ def get_group(id):
         request_data = request.get_json()
         full_name = request_data.get('full_name')
         group_list = group.people_list.split(',')
-
         
         if full_name in group_list:
             group_list.remove(full_name)
