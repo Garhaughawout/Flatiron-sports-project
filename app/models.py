@@ -1,5 +1,5 @@
 from config import db
-from sqlalchemy.orm import relationship, validates
+from sqlalchemy.orm import validates
 
 class User(db.Model):
     __tablename__ = 'users'

@@ -18,7 +18,7 @@ export default function Profile({theme}) {
 
     // Fetch user details from the backend on page load
     useEffect(() => {
-        fetch(`http://localhost:5000/user/${user}`, {
+        fetch(`https://flatiron-sports-project-api.onrender.com/user/${user}`, {
             method: 'GET',
             headers: {
                 'content-type': 'application/json',
@@ -36,7 +36,7 @@ export default function Profile({theme}) {
 
     /// Fetch groups from the backend on page load
     useEffect(() => {
-        axios.get(`http://localhost:5000/groups`)
+        axios.get(`https://flatiron-sports-project-api.onrender.com/groups`)
         .then(response => {
             setGroups(response.data);
         })
