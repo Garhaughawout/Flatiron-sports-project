@@ -31,6 +31,10 @@ export default function Groups({ theme }) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const [filters, setFilters] = useState({
+        sport: "",
+        skill: ""
+    });
 
     // Fetch user details from the backend on page load
     useEffect(() => {
@@ -48,72 +52,32 @@ export default function Groups({ theme }) {
         });
     }, [user]);
 
+    // Built to handle the filter change and update the filters / Still in progress
+    // function filterGroups() {
+    //     if (filters.sport === "" && filters.skill === "") {
+    //         return groups; 
+    //     } 
+    //     return groups.filter((group) => {
+    //         if (filters.sport !== "" && filters.skill !== "") {
+    //             return group.sport === filters.sport && group.skill_level === filters.skill;
+    //         } else if (filters.sport !== "") {
+    //             return group.sport === filters.sport;
+    //         } else if (filters.skill !== "") {
+    //             return group.skill_level === filters.skill;
+    //         }
+    //     });
+    // }
+
     // Fetch groups from the backend on page load
     useEffect(() => {
-        fetch("https://flatiron-sports-project-api.onrender.com/groups")
-            .then((res) => res.json())
-            .then((data) => {
-                setGroups(data);
-            });
-    }, []);
-
-    // Function to select the correct image based on the sport of the group
-    function selectImage(sport) {
-        switch(sport) {
-            case "Basketball": return image1;
-            case "Football": return image2;
-            case "Soccer": return image3;
-            case "Pickleball": return image4;
-            case "Volleyball": return image5;
-            default: return null;
-        }
-    }
-
-    // Function to handle the form submission and create a new group
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (formInformation.sport === "" || formInformation.location === "" || formInformation.time === "" || formInformation.date === "" || formInformation.skill === "" || formInformation.people === "") {
-            alert("Please fill out all the information.");
-            return;
-        }
-        fetch('https://flatiron-sports-project-api.onrender.com/group', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(formInformation),
+        axios.get('https://flatiron-sports-project-api.onrender.com/groups')
+        .then(response => {
+            setGroups(response.data);
         })
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data);
-                setGroups([...groups, data]);
-            });
-            alert("Group Created!");
-    }
-
-    // Function to handle the time input and convert it to 12 hour format
-    function handleTime(e) {
-        const time = e.target.value;
-        setTimeBefore(time);
-        let [hours, minutes] = time.split(':');
-        if (hours > 12) {
-            hours = hours - 12;
-            hours = hours < 10 ? "0" + hours : hours;
-        }
-        setFormInformation({
-            ...formInformation,
-            time: `${hours}:${minutes}`,
+        .catch((error) => {
+            console.error('Error:', error);
         });
-    }
-
-    // Function to edit the form information
-    function editFormInformation(e) {
-        setFormInformation({
-            ...formInformation,
-            user_id: user,
-            [e.target.name]: e.target.value,
-        });
-    }
+    }, []);
 
     // Function to render the groups
     function renderGroups() {
@@ -137,6 +101,60 @@ export default function Groups({ theme }) {
             userDetails={userDetails}
             theme={theme}
             />;
+        });
+    }
+
+    // Function to select the correct image based on the sport of the group
+    function selectImage(sport) {
+        switch(sport) {
+            case "Basketball": return image1;
+            case "Football": return image2;
+            case "Soccer": return image3;
+            case "Pickleball": return image4;
+            case "Volleyball": return image5;
+            default: return null;
+        }
+    }
+
+    // Function to handle the form submission and create a new group
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (formInformation.sport === "" || formInformation.location === "" || formInformation.time === "" || formInformation.date === "" || formInformation.skill === "" || formInformation.people === "") {
+            alert("Please fill out all the information.");
+            return;
+        }
+        axios.post('https://flatiron-sports-project-api.onrender.com/group', formInformation)
+            .then(response => {
+                setGroups([...groups, response.data]);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+            alert("Group Created!");
+            window.location.reload();
+        }
+    
+    // Function to handle the time input and convert it to 12 hour format
+    function handleTime(e) {
+        const time = e.target.value;
+        setTimeBefore(time);
+        let [hours, minutes] = time.split(':');
+        if (hours > 12) {
+            hours = hours - 12;
+            hours = hours < 10 ? "0" + hours : hours;
+        }
+        setFormInformation({
+            ...formInformation,
+            time: `${hours}:${minutes}`,
+        });
+    }
+
+    // Function to edit the form information
+    function editFormInformation(e) {
+        setFormInformation({
+            ...formInformation,
+            user_id: user,
+            [e.target.name]: e.target.value,
         });
     }
 

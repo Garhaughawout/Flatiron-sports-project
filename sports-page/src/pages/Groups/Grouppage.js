@@ -59,6 +59,8 @@ export default function GroupPage() {
         }
     }
 
+
+
     //Function to handle the join button and add or remove the user from the group
     function handleJoin() {
         if (joined === false) {

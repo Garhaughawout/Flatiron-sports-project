@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import '../../Styles/signup.css';
 
 export default function Signup() {
@@ -11,25 +12,20 @@ export default function Signup() {
     // Function to handle form submission and send data to the backend
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch('https://flatiron-sports-project-api.onrender.com/signup', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                email: email,
-                password: password,
-                first_name: first_name,
-                last_name: last_name
-            })
+        axios.post('https://flatiron-sports-project-api.onrender.com/signup', {
+            username: username,
+            email: email,
+            password: password,
+            first_name: first_name,
+            last_name: last_name
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
+        .then(response => {
+            console.log(response);
             window.location.href = '/login';
         })
-        .catch(error => console.error('Error:', error));
+        .catch(error => {
+            console.log(error);
+        });
     }
 
     return (
